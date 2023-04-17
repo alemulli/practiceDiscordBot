@@ -11,8 +11,7 @@ const client = new Client({
 });
 
 client.on('ready', (c) => {
-    console.log("Bro-bot is ready to take over the world! Mwahhaha!")
-    console.log(`${c.user.tag}`)
+    console.log(`Bro-bot, ${c.user.tag}, is ready to take over the world! Mwahhaha!`)
 })
 
 client.on('messageCreate', (message) => {
@@ -22,8 +21,20 @@ client.on('messageCreate', (message) => {
         return;
     }
 
-    if (message.content === 'hello') {
+    if (message.content === 'hello Bro-bot') {
         message.reply("Bro-bot is ready to take over the world! Mwahhaha!")
+    }
+})
+
+client.on('interactionCreate', (interaction) => {
+    if (!interaction.isChatInputCommand()) {
+        return
+    }
+
+    console.log(interaction.commandName)
+
+    if(interaction.commandName === 'bro-bot'){
+        interaction.reply("This will be the generated message!")
     }
 })
 
